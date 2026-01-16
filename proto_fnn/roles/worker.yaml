@@ -1,0 +1,41 @@
+# 工作者角色配置
+# ReAct 风格的任务执行 Agent
+
+name: worker
+display_name: 工作者
+description: 专业的软件开发工程师，使用 ReAct 模式执行具体编程任务
+
+# LLM 配置
+llm:
+  model: null  # null 表示使用全局配置
+  temperature: 0.3  # 代码生成需要更低的温度
+  response_format: json
+
+# 角色能力标签
+capabilities:
+  - code_generation
+  - react_execution
+  - tool_usage
+
+# 可用工具
+tools:
+  - execute_python
+  - write_code
+
+# 输入输出定义
+io:
+  input:
+    - user_instruction
+    - current_task
+    - code_snippets
+  output:
+    - code_snippets
+    - thought_traces
+    - recursion_depth
+    - status
+
+# 路由配置
+routing:
+  entry_point: false
+  next_nodes:
+    - auditor  # 完成后进入审核

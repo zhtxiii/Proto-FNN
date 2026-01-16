@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# 输出目录
+output/
+
+# 执行追踪
+execution_trace.json
+execution_viewer.html
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# 环境
+.env
+*.env

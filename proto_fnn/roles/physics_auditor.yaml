@@ -1,0 +1,29 @@
+# 物理审核者角色配置
+# 专门审核物理工作者的分析输出
+
+name: physics_auditor
+display_name: 物理审核者
+description: 审核物理/数学/科学分析的正确性和完整性
+
+llm:
+  model: null
+  temperature: 0.2
+  response_format: json
+
+capabilities:
+  - physics_review
+  - scientific_validation
+
+io:
+  input:
+    - user_instruction
+    - current_task
+    - analysis_result
+  output:
+    - audit_status
+    - audit_feedback
+
+routing:
+  entry_point: false
+  next_nodes:
+    - arbitrator

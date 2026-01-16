@@ -1,0 +1,29 @@
+# 代码审核者角色配置
+# 专门审核编码工作者的代码输出
+
+name: code_auditor
+display_name: 代码审核者
+description: 审核代码质量，检查功能是否正确实现
+
+llm:
+  model: null
+  temperature: 0.2
+  response_format: json
+
+capabilities:
+  - code_review
+  - quality_check
+
+io:
+  input:
+    - user_instruction
+    - current_task
+    - code_snippets
+  output:
+    - audit_status
+    - audit_feedback
+
+routing:
+  entry_point: false
+  next_nodes:
+    - arbitrator

@@ -1,0 +1,47 @@
+# 仲裁者角色配置
+# 具有 Lite-MCTS 规划能力的核心决策节点
+
+name: arbitrator
+display_name: 仲裁者
+description: 具有 Lite-MCTS 规划能力的核心决策节点，负责任务分解和方案选择
+
+# LLM 配置
+llm:
+  model: null  # null 表示使用全局配置
+  temperature: 0.7  # 保持创造性用于生成多方案
+  response_format: json
+
+# 角色能力标签
+capabilities:
+  - task_planning
+  - mcts_simulation
+  - delegation
+  - error_recovery
+
+# 输入输出定义
+io:
+  input:
+    - user_instruction
+    - status
+    - code_snippets
+    - recursion_depth
+    - audit_feedback
+  output:
+    - thought_traces
+    - status
+    - current_task
+    - audit_status
+    - audit_feedback
+
+# 路由配置
+routing:
+  entry_point: true  # 是否为入口节点
+  next_nodes:
+    - worker
+    - doc_generator
+    - END
+  routing_function: should_delegate
+
+# 限制配置
+limits:
+  max_recursion_depth: 2

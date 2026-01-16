@@ -1,0 +1,35 @@
+# 物理工作者角色配置
+# 专门处理物理、数学、科学问题
+
+name: physics_worker
+display_name: 物理工作者
+description: 处理物理、数学、科学理论问题，用自然语言回答而非生成代码
+
+# LLM 配置
+llm:
+  model: null
+  temperature: 0.3
+  response_format: json
+
+# 角色能力标签
+capabilities:
+  - physics
+  - mathematics
+  - science
+  - theoretical_analysis
+
+# 输入输出定义
+io:
+  input:
+    - user_instruction
+    - current_task
+  output:
+    - thought_traces
+    - analysis_result
+    - status
+
+# 路由配置
+routing:
+  entry_point: false
+  next_nodes:
+    - auditor

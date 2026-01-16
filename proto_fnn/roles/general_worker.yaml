@@ -1,0 +1,35 @@
+# 通用工作者角色配置
+# 处理代码和物理之外的其他问题
+
+name: general_worker
+display_name: 通用工作者
+description: 处理一般性问题，提供分析、建议和解答
+
+# LLM 配置
+llm:
+  model: null
+  temperature: 0.5
+  response_format: json
+
+# 角色能力标签
+capabilities:
+  - general_analysis
+  - research
+  - problem_solving
+  - writing
+
+# 输入输出定义
+io:
+  input:
+    - user_instruction
+    - current_task
+  output:
+    - thought_traces
+    - analysis_result
+    - status
+
+# 路由配置
+routing:
+  entry_point: false
+  next_nodes:
+    - auditor
